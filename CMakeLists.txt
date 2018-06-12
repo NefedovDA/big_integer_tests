@@ -10,4 +10,4 @@ add_executable(big_integer_testing
                big_integer.cpp
                gtest/gtest-all.cc
                gtest/gtest.h
-               gtest/gtest_main.cc functions.h)
+               gtest/gtest_main.cc)
