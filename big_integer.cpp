@@ -15,11 +15,11 @@
 //=================declaration=====================
 //=================================================
 
-int vector_compare(const smart_vector &a, const smart_vector &b);
+int vector_compare(const std::vector<uint32_t> &a, const std::vector<uint32_t> &b);
 
-void vector_shift_right(smart_vector &resource, size_t offset);
+void vector_shift_right(std::vector<uint32_t> &resource, size_t offset);
 
-void vector_shift_left(smart_vector &resource, size_t offset);
+void vector_shift_left(std::vector<uint32_t> &resource, size_t offset);
 
 uint32_t search_dividend(const big_integer &a, const big_integer &divider);
 
@@ -198,7 +198,7 @@ big_integer &big_integer::operator-=(big_integer const &rhs) {
 }
 
 big_integer &big_integer::operator*=(big_integer const &rhs) {
-    smart_vector buf;
+    std::vector<uint32_t> buf;
     buf.resize(data.size() + rhs.data.size());
     for (size_t i = 0; i < data.size(); i++) {
         carry = 0;
@@ -225,7 +225,7 @@ uint32_t find_d(uint32_t a) {
     }
 }
 
-uint32_t get(const smart_vector &v, size_t i) {
+uint32_t get(const std::vector<uint32_t> &v, size_t i) {
     if (i < v.size()) {
         return v[i];
     } else {
@@ -276,7 +276,7 @@ big_integer &big_integer::operator/=(big_integer const &rhs) {
     }
     if (rhs.data.size() == 1) {
         uint32_t d = rhs.data[0];
-        smart_vector out(data.size());
+        std::vector<uint32_t> out(data.size());
         carry = 0;
         for (size_t i = data.size(); i != 0; --i) {
             helper.u[1] = carry;
@@ -306,7 +306,7 @@ big_integer &big_integer::operator/=(big_integer const &rhs) {
         size_t m = data.size();
         size_t k = m - n;
 
-        smart_vector buf(k + 1);
+        std::vector<uint32_t> buf(k + 1);
 
         vector_shift_right(v.data, k);
 
@@ -572,7 +572,7 @@ bool big_integer::is_zero() const {
     return data.empty();
 }
 
-int vector_compare(const smart_vector &a, const smart_vector &b) {
+int vector_compare(const std::vector<uint32_t> &a, const std::vector<uint32_t> &b) {
     if (a.size() < b.size()) {
         return -1;
     }
@@ -592,7 +592,7 @@ int vector_compare(const smart_vector &a, const smart_vector &b) {
     return 0;
 }
 
-void vector_shift_right(smart_vector &resource, size_t offset) {
+void vector_shift_right(std::vector<uint32_t> &resource, size_t offset) {
     resource.resize(resource.size() + offset);
     for (size_t i = resource.size(); i != offset; --i) {
         resource[i - 1] = resource[i - 1 - offset];
@@ -602,7 +602,7 @@ void vector_shift_right(smart_vector &resource, size_t offset) {
     }
 }
 
-void vector_shift_left(smart_vector &resource, size_t offset) {
+void vector_shift_left(std::vector<uint32_t> &resource, size_t offset) {
     for (size_t i = 0; i < resource.size() - offset; ++i) {
         resource[i] = resource[i + offset];
     }
@@ -642,6 +642,10 @@ int compare(const big_integer &a, const big_integer &b) {
             return vector_compare(a.data, b.data);
         }
     }
+}
+
+big_integer::~big_integer() {
+    delete data;
 }
 
 //=================================================
