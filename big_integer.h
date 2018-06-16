@@ -4,8 +4,8 @@
 #include <cstddef>
 #include <iosfwd>
 #include <cstdint>
-//#include <vector>
-#include "utils/smart_vector.h"
+#include <vector>
+//#include "utils/smart_vector.h"
 
 struct big_integer {
     big_integer() = default;
@@ -18,7 +18,7 @@ struct big_integer {
 
     explicit big_integer(std::string const &str);
 
-    ~big_integer() = default;
+    ~big_integer();
 
     big_integer &operator=(big_integer const &other) = default;
 
@@ -71,8 +71,8 @@ struct big_integer {
     friend std::string to_string(big_integer const &a);
 
 private:
-    smart_vector data;
-    //std::vector<uint32_t> data;
+    //smart_vector data;
+    std::vector<uint32_t> data;
     bool is_negate = false;
 
     void sift_zeros();
