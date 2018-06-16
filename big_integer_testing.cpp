@@ -14,6 +14,18 @@ TEST(correctness, two_plus_two)
     EXPECT_EQ(2              + big_integer(2), 4);
 }
 
+TEST(correctness, op_with_zero)
+{
+    EXPECT_EQ(big_integer(2) + 0, 2);
+    EXPECT_EQ(big_integer(-2) + 0, -2);
+    EXPECT_EQ(big_integer(2) - 0, 2);
+    EXPECT_EQ(big_integer(-2) - 0, -2);
+    EXPECT_EQ(big_integer(2) * 0, 0);
+    EXPECT_EQ(big_integer(-2) * 0, 0);
+    EXPECT_EQ(0 / big_integer(2), 0);
+    EXPECT_EQ(0 / big_integer(-2), 0);
+}
+
 TEST(correctness, default_ctor)
 {
     big_integer a;
@@ -550,6 +562,7 @@ TEST(correctness, div_long)
     big_integer a("10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
     big_integer b(                                                     "100000000000000000000000000000000000000");
     big_integer c("100000000000000000000000000000000000000000000000000000");
+    big_integer c1("100000000000000000000000000000000000000000000000000002");
 
     EXPECT_EQ(a / b, c);
 }
@@ -570,6 +583,12 @@ TEST(correctness, div_long_signed2)
     big_integer c( "100000000000000000000000000000000000000000000000000000");
 
     EXPECT_EQ(a / b, c);
+}
+
+TEST(correctness, my_from_string)
+{
+    big_integer a("100000000000000000000");
+    EXPECT_FALSE(a == 0);
 }
 
 TEST(correctness, negation_long)
@@ -608,6 +627,7 @@ TEST(correctness, shr_long)
 
 TEST(correctness, string_conv)
 {
+    EXPECT_EQ(big_integer("100"), 100);
     EXPECT_EQ(to_string(big_integer("100")), "100");
     EXPECT_EQ(to_string(big_integer("0100")), "100");
     EXPECT_EQ(to_string(big_integer("0")), "0");

@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <functional>
 #include <algorithm>
+#include <cassert>
 #include "big_integer.h"
 
 #define TWO_IN_32 4294967296ULL
@@ -14,24 +15,11 @@
 //=================declaration=====================
 //=================================================
 
-//void big_integer::sift_zeros();
+int vector_compare(const smart_vector &a, const smart_vector &b);
 
-//bool big_integer::is_zero();
+void vector_shift_right(smart_vector &resource, size_t offset);
 
-//int compare(const big_integer &a, const big_integer &b);
-
-//void big_integer::to_twos_complement();
-
-//void big_integer::from_twos_complement();
-
-//template <class FunctorT>
-//void big_integer::bit_op(big_integer assistant, FunctorT op);
-
-int vector_compare(const std::vector<uint32_t> &a, const std::vector<uint32_t> &b);
-
-void vector_shift_right(std::vector<uint32_t> &resource, size_t offset);
-
-void vector_shift_left(std::vector<uint32_t> &resource, size_t offset);
+void vector_shift_left(smart_vector &resource, size_t offset);
 
 uint32_t search_dividend(const big_integer &a, const big_integer &divider);
 
@@ -46,7 +34,7 @@ union fast_split_ull {
 
 uint32_t carry;
 
-uint32_t safe_plus(uint64_t a, uint64_t b) {
+uint32_t safe_plus(uint64_t a, uint64_t b = 0) {
     helper.ull = a + b + carry;
     carry = helper.u[1];
     return helper.u[0];
@@ -83,11 +71,13 @@ uint32_t bit_shl(uint64_t v, uint32_t offset) {
 //==================constructors===================
 //=================================================
 
-big_integer::big_integer(int a) : data(1, std::llabs(a)), is_negate(a < 0) {
+big_integer::big_integer(int a) : data(1), is_negate(a < 0) {
+    data[0] = std::llabs(a);
     sift_zeros();
 }
 
-big_integer::big_integer(uint32_t a) : data(1, a) {
+big_integer::big_integer(uint32_t a) : data(1) {
+    data[0] = a;
     sift_zeros();
 }
 
@@ -147,15 +137,21 @@ bool operator>=(big_integer const &a, big_integer const &b) {
 //=================================================
 
 big_integer &big_integer::operator+=(big_integer const &rhs) {
+    if (rhs.is_zero()) {
+        return *this;
+    }
+    if (is_zero()) {
+        return *this = rhs;
+    }
     if (is_negate == rhs.is_negate) {
         carry = 0;
         data.resize(std::max(data.size(), rhs.data.size()));
-        for (size_t i = 0; i < data.size(); ++i) {
-            if (i < rhs.data.size()) {
-                data[i] = safe_plus(data[i], rhs.data[i]);
-            } else {
-                data[i] = safe_plus(data[i], 0);
-            }
+        size_t i = 0;
+        for (; i < rhs.data.size(); ++i) {
+            data[i] = safe_plus(data[i], rhs.data[i]);
+        }
+        for (; i < data.size(); ++i) {
+            data[i] = safe_plus(data[i]);
         }
         if (carry != 0) {
             data.push_back(carry);
@@ -167,6 +163,12 @@ big_integer &big_integer::operator+=(big_integer const &rhs) {
 }
 
 big_integer &big_integer::operator-=(big_integer const &rhs) {
+    if (rhs.is_zero()) {
+        return *this;
+    }
+    if (is_zero()) {
+        return *this = -rhs;
+    }
     if (is_negate == rhs.is_negate) {
         carry = 0;
         int comp = vector_compare(data, rhs.data);
@@ -196,7 +198,7 @@ big_integer &big_integer::operator-=(big_integer const &rhs) {
 }
 
 big_integer &big_integer::operator*=(big_integer const &rhs) {
-    std::vector<uint32_t> buf;
+    smart_vector buf;
     buf.resize(data.size() + rhs.data.size());
     for (size_t i = 0; i < data.size(); i++) {
         carry = 0;
@@ -206,38 +208,135 @@ big_integer &big_integer::operator*=(big_integer const &rhs) {
         buf[i + rhs.data.size()] = carry;
     }
     is_negate ^= rhs.is_negate;
-    std::swap(data, buf);
+    data.swap(buf);
     sift_zeros();
     return *this;
 }
 
-big_integer &big_integer::operator/=(big_integer const &rhs) {
-    if (rhs.is_zero()) {
-        throw std::runtime_error("division by zero");
+uint32_t find_d(uint32_t a) {
+    uint32_t mask = 2147483648;
+    uint32_t r = 0;
+    while (true) {
+        if ((mask & a) != 0) {
+            return r;
+        }
+        ++r;
+        mask >>= 1;
     }
+}
+
+uint32_t get(const smart_vector &v, size_t i) {
+    if (i < v.size()) {
+        return v[i];
+    } else {
+        return 0;
+    }
+}
+
+uint32_t div_3_2(uint32_t u2, uint32_t u1, uint32_t u0, uint32_t d1, uint32_t d0) {
+    if (u2 == d1 && u1 == d0) {
+        return UINT32_MAX;
+    }
+    helper.u[0] = u1;
+    helper.u[1] = u2;
+    uint64_t U = helper.ull;
+    helper.u[0] = d0;
+    helper.u[1] = d1;
+    uint64_t D = helper.ull;
+    uint64_t Q = U / d1;
+    if (Q > UINT32_MAX) {
+        helper.u[1] = d0 - u1;
+        helper.ull -= u0;
+        if (helper.ull <= D) {
+            return UINT32_MAX;
+        } else {
+            return UINT32_MAX - 1;
+        }
+    }
+    uint64_t DQ = Q * d0;
+    helper.ull = U - Q * d1;
+    helper.u[1] = helper.u[0];
+    helper.u[0] = u0;
+
+    if (helper.ull < DQ) {
+        --Q;
+        helper.ull += D;
+        if (helper.ull >= D && helper.ull < DQ) {
+            --Q;
+        }
+    }
+    helper.ull = Q;
+    return helper.u[0];
+}
+
+big_integer &big_integer::operator/=(big_integer const &rhs) {
+    assert(!rhs.is_zero());
     if (vector_compare(data, rhs.data) == -1) {
         return *this = 0;
     }
-    bool sign = is_negate ^rhs.is_negate;
-    is_negate = false;
-    std::vector<uint32_t> out;
-    big_integer divider;
-    divider.data.resize(data.size());
-    for (size_t i = rhs.data.size(), j = divider.data.size(); i != 0; --i, --j) {
-        divider.data[j - 1] = rhs.data[i - 1];
+    if (rhs.data.size() == 1) {
+        uint32_t d = rhs.data[0];
+        smart_vector out(data.size());
+        carry = 0;
+        for (size_t i = data.size(); i != 0; --i) {
+            helper.u[1] = carry;
+            helper.u[0] = data[i - 1];
+            uint64_t tmp = helper.ull;
+            helper.ull /= d;
+            out[i - 1] = helper.u[0];
+            helper.ull = tmp - helper.ull * d;
+            carry = helper.u[0];
+        }
+        data.swap(out);
+        is_negate ^= rhs.is_negate;
+        sift_zeros();
+        return *this;
+    } else {
+        bool sign = is_negate ^rhs.is_negate;
+
+        uint32_t d = find_d(rhs.data.back());
+
+        *this <<= d;
+        big_integer v = rhs << d;
+
+        is_negate = false;
+        v.is_negate = false;
+
+        size_t n = v.data.size();
+        size_t m = data.size();
+        size_t k = m - n;
+
+        smart_vector buf(k + 1);
+
+        vector_shift_right(v.data, k);
+
+        if (data.back() >= v.data.back()) {
+            buf[k] = 1;
+            *this -= v;
+        }
+
+        uint32_t d0 = v.data[v.data.size() - 2];
+        uint32_t d1 = v.data[v.data.size() - 1];
+
+
+        while (k != 0) {
+            --k;
+            v >>= 32;
+
+            size_t l = v.data.size();
+            buf[k] = div_3_2(get(data, l), get(data, l - 1), get(data, l - 2), d1, d0);
+            *this -= v * buf[k];
+            if (*this < 0) {
+                *this += v;
+                ++buf[k];
+            }
+        }
+
+        is_negate = sign;
+        data.swap(buf);
+        sift_zeros();
+        return *this;
     }
-    while (rhs.data.size() <= divider.data.size()) {
-        out.push_back(search_dividend(*this, divider));
-        *this -= out.back() * divider;
-        divider >>= 32;
-    }
-    is_negate = sign;
-    data.resize(out.size());
-    for (size_t i = 0, j = data.size() - 1; i < data.size(); ++i, --j) {
-        data[j] = out[i];
-    }
-    sift_zeros();
-    return *this;
 }
 
 big_integer &big_integer::operator%=(big_integer const &rhs) {
@@ -267,8 +366,8 @@ big_integer &big_integer::operator^=(big_integer const &rhs) {
 big_integer big_integer::operator~() const {
     big_integer r = *this;
     r.to_twos_complement();
-    for (uint32_t &d : r.data) {
-        d = ~d;
+    for (size_t i = 0; i < r.data.size(); ++i) {
+        r.data[i] = ~r.data[i];
     }
     r.is_negate = !r.is_negate;
     r.from_twos_complement();
@@ -276,6 +375,7 @@ big_integer big_integer::operator~() const {
 }
 
 big_integer &big_integer::operator<<=(int rhs) {
+    assert(rhs >= 0);
     uint32_t big_offset = rhs / 32;
     uint32_t little_offset = rhs - big_offset * 32;
     if (big_offset != 0) {
@@ -283,8 +383,8 @@ big_integer &big_integer::operator<<=(int rhs) {
     }
     if (little_offset != 0) {
         carry = 0;
-        for (uint32_t &d : data) {
-            d = bit_shl(d, little_offset);
+        for (size_t i = 0; i < data.size(); ++i) {
+            data[i] = bit_shl(data[i], little_offset);
         }
         if (carry != 0) {
             data.push_back(carry);
@@ -294,6 +394,7 @@ big_integer &big_integer::operator<<=(int rhs) {
 }
 
 big_integer &big_integer::operator>>=(int rhs) {
+    assert(rhs >= 0);
     uint32_t big_offset = rhs / 32;
     uint32_t little_offset = rhs - big_offset * 32;
     if (big_offset >= data.size()) {
@@ -471,7 +572,7 @@ bool big_integer::is_zero() const {
     return data.empty();
 }
 
-int vector_compare(const std::vector<uint32_t> &a, const std::vector<uint32_t> &b) {
+int vector_compare(const smart_vector &a, const smart_vector &b) {
     if (a.size() < b.size()) {
         return -1;
     }
@@ -491,7 +592,7 @@ int vector_compare(const std::vector<uint32_t> &a, const std::vector<uint32_t> &
     return 0;
 }
 
-void vector_shift_right(std::vector<uint32_t> &resource, size_t offset) {
+void vector_shift_right(smart_vector &resource, size_t offset) {
     resource.resize(resource.size() + offset);
     for (size_t i = resource.size(); i != offset; --i) {
         resource[i - 1] = resource[i - 1 - offset];
@@ -501,35 +602,17 @@ void vector_shift_right(std::vector<uint32_t> &resource, size_t offset) {
     }
 }
 
-void vector_shift_left(std::vector<uint32_t> &resource, size_t offset) {
+void vector_shift_left(smart_vector &resource, size_t offset) {
     for (size_t i = 0; i < resource.size() - offset; ++i) {
         resource[i] = resource[i + offset];
     }
     resource.resize(resource.size() - offset);
 }
 
-uint32_t search_dividend(const big_integer &a, const big_integer &divider) {
-    uint32_t l = 0;
-    uint32_t r = 4294967295U;
-    if (r * divider <= a) {
-        return r;
-    }
-    uint32_t m;
-    while (l + 1 < r) {
-        m = l + (r - l) / 2;
-        if (m * divider > a) {
-            r = m;
-        } else {
-            l = m;
-        }
-    }
-    return l;
-}
-
 void big_integer::to_twos_complement() {
     if (is_negate) {
-        for (uint32_t &d : data) {
-            d = ~d;
+        for (size_t i = 0; i < data.size(); ++i) {
+            data[i] = ~data[i];
         }
         *this -= 1;
     }
@@ -538,8 +621,8 @@ void big_integer::to_twos_complement() {
 void big_integer::from_twos_complement() {
     if (is_negate) {
         *this += 1;
-        for (uint32_t &d : data) {
-            d = ~d;
+        for (size_t i = 0; i < data.size(); ++i) {
+            data[i] = ~data[i];
         }
     }
     sift_zeros();

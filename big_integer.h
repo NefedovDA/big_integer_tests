@@ -3,8 +3,9 @@
 
 #include <cstddef>
 #include <iosfwd>
-#include <vector>
 #include <cstdint>
+//#include <vector>
+#include "utils/smart_vector.h"
 
 struct big_integer {
     big_integer() = default;
@@ -70,7 +71,8 @@ struct big_integer {
     friend std::string to_string(big_integer const &a);
 
 private:
-    std::vector<uint32_t> data;
+    smart_vector data;
+    //std::vector<uint32_t> data;
     bool is_negate = false;
 
     void sift_zeros();
