@@ -644,9 +644,6 @@ int compare(const big_integer &a, const big_integer &b) {
     }
 }
 
-big_integer::~big_integer() {
-    delete data;
-}
 
 //=================================================
 //=================================================
