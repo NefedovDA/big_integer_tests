@@ -38,7 +38,7 @@ uint32_t safe_plus(uint64_t a, uint64_t b = 0) {
     helper.ull = a + b + carry;
     carry = helper.u[1];
     return helper.u[0];
-};
+}
 
 uint32_t safe_minus(uint64_t a, uint64_t b) {
     helper.ull = TWO_IN_32 + a - b - carry;
@@ -49,13 +49,13 @@ uint32_t safe_minus(uint64_t a, uint64_t b) {
         carry = 1;
     }
     return helper.u[0];
-};
+}
 
 uint32_t safe_multiplies(uint64_t a, uint64_t b, uint64_t d) {
     helper.ull = a * b + carry + d;
     carry = helper.u[1];
     return helper.u[0];
-};
+}
 
 const auto bit_and = std::bit_and<uint32_t>();
 const auto bit_or = std::bit_or<uint32_t>();
@@ -65,7 +65,7 @@ uint32_t bit_shl(uint64_t v, uint32_t offset) {
     helper.ull = (v << offset) + carry;
     carry = helper.u[1];
     return helper.u[0];
-};
+}
 
 //=================================================
 //==================constructors===================
