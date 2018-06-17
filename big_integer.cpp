@@ -15,11 +15,11 @@
 //=================declaration=====================
 //=================================================
 
-int vector_compare(const std::vector<uint32_t> &a, const std::vector<uint32_t> &b);
+int vector_compare(const smart_vector &a, const smart_vector &b);
 
-void vector_shift_right(std::vector<uint32_t> &resource, size_t offset);
+void vector_shift_right(smart_vector &resource, size_t offset);
 
-void vector_shift_left(std::vector<uint32_t> &resource, size_t offset);
+void vector_shift_left(smart_vector &resource, size_t offset);
 
 uint32_t search_dividend(const big_integer &a, const big_integer &divider);
 
@@ -30,17 +30,19 @@ uint32_t search_dividend(const big_integer &a, const big_integer &divider);
 union fast_split_ull {
     uint64_t ull;
     uint32_t u[2];
-} helper;
+};
 
 uint32_t carry;
 
 uint32_t safe_plus(uint64_t a, uint64_t b = 0) {
+    fast_split_ull helper;
     helper.ull = a + b + carry;
     carry = helper.u[1];
     return helper.u[0];
 }
 
 uint32_t safe_minus(uint64_t a, uint64_t b) {
+    fast_split_ull helper;
     helper.ull = TWO_IN_32 + a - b - carry;
     if (helper.ull >= TWO_IN_32) {
         helper.ull -= TWO_IN_32;
@@ -52,6 +54,7 @@ uint32_t safe_minus(uint64_t a, uint64_t b) {
 }
 
 uint32_t safe_multiplies(uint64_t a, uint64_t b, uint64_t d) {
+    fast_split_ull helper;
     helper.ull = a * b + carry + d;
     carry = helper.u[1];
     return helper.u[0];
@@ -62,6 +65,7 @@ const auto bit_or = std::bit_or<uint32_t>();
 const auto bit_xor = std::bit_xor<uint32_t>();
 
 uint32_t bit_shl(uint64_t v, uint32_t offset) {
+    fast_split_ull helper;
     helper.ull = (v << offset) + carry;
     carry = helper.u[1];
     return helper.u[0];
@@ -198,7 +202,7 @@ big_integer &big_integer::operator-=(big_integer const &rhs) {
 }
 
 big_integer &big_integer::operator*=(big_integer const &rhs) {
-    std::vector<uint32_t> buf;
+    smart_vector buf;
     buf.resize(data.size() + rhs.data.size());
     for (size_t i = 0; i < data.size(); i++) {
         carry = 0;
@@ -225,7 +229,7 @@ uint32_t find_d(uint32_t a) {
     }
 }
 
-uint32_t get(const std::vector<uint32_t> &v, size_t i) {
+uint32_t get(const smart_vector &v, size_t i) {
     if (i < v.size()) {
         return v[i];
     } else {
@@ -237,6 +241,7 @@ uint32_t div_3_2(uint32_t u2, uint32_t u1, uint32_t u0, uint32_t d1, uint32_t d0
     if (u2 == d1 && u1 == d0) {
         return UINT32_MAX;
     }
+    fast_split_ull helper;
     helper.u[0] = u1;
     helper.u[1] = u2;
     uint64_t U = helper.ull;
@@ -276,8 +281,9 @@ big_integer &big_integer::operator/=(big_integer const &rhs) {
     }
     if (rhs.data.size() == 1) {
         uint32_t d = rhs.data[0];
-        std::vector<uint32_t> out(data.size());
+        smart_vector out(data.size());
         carry = 0;
+        fast_split_ull helper;
         for (size_t i = data.size(); i != 0; --i) {
             helper.u[1] = carry;
             helper.u[0] = data[i - 1];
@@ -306,7 +312,7 @@ big_integer &big_integer::operator/=(big_integer const &rhs) {
         size_t m = data.size();
         size_t k = m - n;
 
-        std::vector<uint32_t> buf(k + 1);
+        smart_vector buf(k + 1);
 
         vector_shift_right(v.data, k);
 
@@ -572,7 +578,7 @@ bool big_integer::is_zero() const {
     return data.empty();
 }
 
-int vector_compare(const std::vector<uint32_t> &a, const std::vector<uint32_t> &b) {
+int vector_compare(const smart_vector &a, const smart_vector &b) {
     if (a.size() < b.size()) {
         return -1;
     }
@@ -592,7 +598,7 @@ int vector_compare(const std::vector<uint32_t> &a, const std::vector<uint32_t> &
     return 0;
 }
 
-void vector_shift_right(std::vector<uint32_t> &resource, size_t offset) {
+void vector_shift_right(smart_vector &resource, size_t offset) {
     resource.resize(resource.size() + offset);
     for (size_t i = resource.size(); i != offset; --i) {
         resource[i - 1] = resource[i - 1 - offset];
@@ -602,7 +608,7 @@ void vector_shift_right(std::vector<uint32_t> &resource, size_t offset) {
     }
 }
 
-void vector_shift_left(std::vector<uint32_t> &resource, size_t offset) {
+void vector_shift_left(smart_vector &resource, size_t offset) {
     for (size_t i = 0; i < resource.size() - offset; ++i) {
         resource[i] = resource[i + offset];
     }

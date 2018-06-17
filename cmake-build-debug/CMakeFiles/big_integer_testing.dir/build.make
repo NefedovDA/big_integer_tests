@@ -60,15 +60,15 @@ CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.obj: CMakeFiles/big_i
 CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.obj: CMakeFiles/big_integer_testing.dir/includes_CXX.rsp
 CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.obj: ../big_integer_testing.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programmes\c++\Sorokin\bigIntTestWind\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\big_integer_testing.dir\big_integer_testing.cpp.obj -c D:\programmes\c++\Sorokin\bigIntTestWind\big_integer_testing.cpp
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\big_integer_testing.dir\big_integer_testing.cpp.obj -c D:\programmes\c++\Sorokin\bigIntTestWind\big_integer_testing.cpp
 
 CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\programmes\c++\Sorokin\bigIntTestWind\big_integer_testing.cpp > CMakeFiles\big_integer_testing.dir\big_integer_testing.cpp.i
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\programmes\c++\Sorokin\bigIntTestWind\big_integer_testing.cpp > CMakeFiles\big_integer_testing.dir\big_integer_testing.cpp.i
 
 CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\programmes\c++\Sorokin\bigIntTestWind\big_integer_testing.cpp -o CMakeFiles\big_integer_testing.dir\big_integer_testing.cpp.s
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\programmes\c++\Sorokin\bigIntTestWind\big_integer_testing.cpp -o CMakeFiles\big_integer_testing.dir\big_integer_testing.cpp.s
 
 CMakeFiles/big_integer_testing.dir/big_integer_testing.cpp.obj.requires:
 
@@ -85,15 +85,15 @@ CMakeFiles/big_integer_testing.dir/big_integer.cpp.obj: CMakeFiles/big_integer_t
 CMakeFiles/big_integer_testing.dir/big_integer.cpp.obj: CMakeFiles/big_integer_testing.dir/includes_CXX.rsp
 CMakeFiles/big_integer_testing.dir/big_integer.cpp.obj: ../big_integer.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programmes\c++\Sorokin\bigIntTestWind\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/big_integer_testing.dir/big_integer.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\big_integer_testing.dir\big_integer.cpp.obj -c D:\programmes\c++\Sorokin\bigIntTestWind\big_integer.cpp
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\big_integer_testing.dir\big_integer.cpp.obj -c D:\programmes\c++\Sorokin\bigIntTestWind\big_integer.cpp
 
 CMakeFiles/big_integer_testing.dir/big_integer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/big_integer_testing.dir/big_integer.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\programmes\c++\Sorokin\bigIntTestWind\big_integer.cpp > CMakeFiles\big_integer_testing.dir\big_integer.cpp.i
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\programmes\c++\Sorokin\bigIntTestWind\big_integer.cpp > CMakeFiles\big_integer_testing.dir\big_integer.cpp.i
 
 CMakeFiles/big_integer_testing.dir/big_integer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/big_integer_testing.dir/big_integer.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\programmes\c++\Sorokin\bigIntTestWind\big_integer.cpp -o CMakeFiles\big_integer_testing.dir\big_integer.cpp.s
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\programmes\c++\Sorokin\bigIntTestWind\big_integer.cpp -o CMakeFiles\big_integer_testing.dir\big_integer.cpp.s
 
 CMakeFiles/big_integer_testing.dir/big_integer.cpp.obj.requires:
 
@@ -110,15 +110,15 @@ CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.obj: CMakeFiles/big_intege
 CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.obj: CMakeFiles/big_integer_testing.dir/includes_CXX.rsp
 CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.obj: ../gtest/gtest-all.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programmes\c++\Sorokin\bigIntTestWind\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.obj"
-	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\big_integer_testing.dir\gtest\gtest-all.cc.obj -c D:\programmes\c++\Sorokin\bigIntTestWind\gtest\gtest-all.cc
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\big_integer_testing.dir\gtest\gtest-all.cc.obj -c D:\programmes\c++\Sorokin\bigIntTestWind\gtest\gtest-all.cc
 
 CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.i"
-	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\programmes\c++\Sorokin\bigIntTestWind\gtest\gtest-all.cc > CMakeFiles\big_integer_testing.dir\gtest\gtest-all.cc.i
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\programmes\c++\Sorokin\bigIntTestWind\gtest\gtest-all.cc > CMakeFiles\big_integer_testing.dir\gtest\gtest-all.cc.i
 
 CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.s"
-	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\programmes\c++\Sorokin\bigIntTestWind\gtest\gtest-all.cc -o CMakeFiles\big_integer_testing.dir\gtest\gtest-all.cc.s
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\programmes\c++\Sorokin\bigIntTestWind\gtest\gtest-all.cc -o CMakeFiles\big_integer_testing.dir\gtest\gtest-all.cc.s
 
 CMakeFiles/big_integer_testing.dir/gtest/gtest-all.cc.obj.requires:
 
@@ -135,15 +135,15 @@ CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.obj: CMakeFiles/big_integ
 CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.obj: CMakeFiles/big_integer_testing.dir/includes_CXX.rsp
 CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.obj: ../gtest/gtest_main.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programmes\c++\Sorokin\bigIntTestWind\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.obj"
-	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\big_integer_testing.dir\gtest\gtest_main.cc.obj -c D:\programmes\c++\Sorokin\bigIntTestWind\gtest\gtest_main.cc
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\big_integer_testing.dir\gtest\gtest_main.cc.obj -c D:\programmes\c++\Sorokin\bigIntTestWind\gtest\gtest_main.cc
 
 CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.i"
-	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\programmes\c++\Sorokin\bigIntTestWind\gtest\gtest_main.cc > CMakeFiles\big_integer_testing.dir\gtest\gtest_main.cc.i
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\programmes\c++\Sorokin\bigIntTestWind\gtest\gtest_main.cc > CMakeFiles\big_integer_testing.dir\gtest\gtest_main.cc.i
 
 CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.s"
-	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\programmes\c++\Sorokin\bigIntTestWind\gtest\gtest_main.cc -o CMakeFiles\big_integer_testing.dir\gtest\gtest_main.cc.s
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\programmes\c++\Sorokin\bigIntTestWind\gtest\gtest_main.cc -o CMakeFiles\big_integer_testing.dir\gtest\gtest_main.cc.s
 
 CMakeFiles/big_integer_testing.dir/gtest/gtest_main.cc.obj.requires:
 
@@ -160,15 +160,15 @@ CMakeFiles/big_integer_testing.dir/utils/smart_vector.cpp.obj: CMakeFiles/big_in
 CMakeFiles/big_integer_testing.dir/utils/smart_vector.cpp.obj: CMakeFiles/big_integer_testing.dir/includes_CXX.rsp
 CMakeFiles/big_integer_testing.dir/utils/smart_vector.cpp.obj: ../utils/smart_vector.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programmes\c++\Sorokin\bigIntTestWind\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/big_integer_testing.dir/utils/smart_vector.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\big_integer_testing.dir\utils\smart_vector.cpp.obj -c D:\programmes\c++\Sorokin\bigIntTestWind\utils\smart_vector.cpp
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\big_integer_testing.dir\utils\smart_vector.cpp.obj -c D:\programmes\c++\Sorokin\bigIntTestWind\utils\smart_vector.cpp
 
 CMakeFiles/big_integer_testing.dir/utils/smart_vector.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/big_integer_testing.dir/utils/smart_vector.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\programmes\c++\Sorokin\bigIntTestWind\utils\smart_vector.cpp > CMakeFiles\big_integer_testing.dir\utils\smart_vector.cpp.i
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\programmes\c++\Sorokin\bigIntTestWind\utils\smart_vector.cpp > CMakeFiles\big_integer_testing.dir\utils\smart_vector.cpp.i
 
 CMakeFiles/big_integer_testing.dir/utils/smart_vector.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/big_integer_testing.dir/utils/smart_vector.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\programmes\c++\Sorokin\bigIntTestWind\utils\smart_vector.cpp -o CMakeFiles\big_integer_testing.dir\utils\smart_vector.cpp.s
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\programmes\c++\Sorokin\bigIntTestWind\utils\smart_vector.cpp -o CMakeFiles\big_integer_testing.dir\utils\smart_vector.cpp.s
 
 CMakeFiles/big_integer_testing.dir/utils/smart_vector.cpp.obj.requires:
 

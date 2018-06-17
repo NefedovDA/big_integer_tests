@@ -1,3 +1,0 @@
-D:/programmes/c++/Sorokin/bigIntTestWind/cmake-build-minsizerel/CMakeFiles/big_integer_testing.dir
-D:/programmes/c++/Sorokin/bigIntTestWind/cmake-build-minsizerel/CMakeFiles/edit_cache.dir
-D:/programmes/c++/Sorokin/bigIntTestWind/cmake-build-minsizerel/CMakeFiles/rebuild_cache.dir

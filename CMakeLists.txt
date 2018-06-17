@@ -11,11 +11,8 @@ add_executable(
         big_integer.cpp
         gtest/gtest-all.cc
         gtest/gtest.h
-        gtest/gtest_main.cc)
-
-if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++11 -pedantic")
-    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fsanitize=address,undefined -D_GLIBCXX_DEBUG")
-endif()
+        gtest/gtest_main.cc
+        utils/smart_vector.h
+        utils/smart_vector.cpp)
 
 target_link_libraries(big_integer_testing -lpthread)

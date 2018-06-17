@@ -120,8 +120,8 @@ void smart_vector::resize(size_t size) {
 }
 
 const uint32_t &smart_vector::operator[](int i) const {
-    assert(i >= 0);
-    assert(i < length);
+    //assert(i >= 0);
+    //assert(i < length);
     if (length > 1) {
         return big_object->data[i];
     } else {
@@ -130,8 +130,8 @@ const uint32_t &smart_vector::operator[](int i) const {
 }
 
 uint32_t &smart_vector::operator[](int i) {
-    assert(i >= 0);
-    assert(i < length);
+    //assert(i >= 0);
+    //assert(i < length);
     if (length > 1) {
         update();
         return big_object->data[i];
@@ -141,12 +141,12 @@ uint32_t &smart_vector::operator[](int i) {
 }
 
 const uint32_t &smart_vector::back() const {
-    assert(length != 0);
+    //assert(length != 0);
     return (*this)[length - 1];
 }
 
 uint32_t &smart_vector::back() {
-    assert(length != 0);
+    //assert(length != 0);
     return (*this)[length - 1];
 }
 
@@ -175,7 +175,7 @@ void smart_vector::push_back(uint32_t a) {
 }
 
 void smart_vector::pop_back() {
-    assert(length != 0);
+    //assert(length != 0);
     switch (length) {
         case 1:
             little_object = 0;
