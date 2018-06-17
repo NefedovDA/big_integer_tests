@@ -107,7 +107,9 @@ void smart_vector::resize(size_t size) {
         default:
             if (length > 0) {
                 if (big_object->count_of_owners != 1 || size > big_object->capacity || size < length) {
+                    smart_data *old = big_object;
                     big_object = new smart_data(*big_object, size + 8);
+                    delete old;
                 }
             } else {
                 uint32_t v = little_object;
@@ -164,7 +166,9 @@ void smart_vector::push_back(uint32_t a) {
         }
         default:
             if (length == big_object->capacity) {
+                smart_data *old = big_object;
                 big_object = new smart_data(*big_object, big_object->capacity * 2);
+                delete old;
             } else {
                 update();
             }
@@ -202,6 +206,8 @@ void smart_vector::swap(smart_vector &other) {
 
 inline void smart_vector::update() {
     if (length > 1 && big_object->count_of_owners != 1) {
+        smart_data *old = big_object;
         big_object = new smart_data(*big_object);
+        delete old;
     }
 }
